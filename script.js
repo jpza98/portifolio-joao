@@ -150,7 +150,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.skill-card, .project-card, .stat-item, .education-card');
+    const animateElements = document.querySelectorAll('.skill-card, .project-card, .stat-item, .education-card, #experiencia > div > div > div');
     
     animateElements.forEach(el => {
         el.style.opacity = '0';
