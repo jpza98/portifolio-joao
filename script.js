@@ -1,4 +1,3 @@
-// Função para tentar diferentes formatos de imagem
 function tryImageFormats() {
     const profileImage = document.getElementById('profileImage');
     const placeholder = document.getElementById('imagePlaceholder');
@@ -23,7 +22,6 @@ function tryImageFormats() {
                 tryNextFormat();
             }
         } else {
-            // Se nenhum formato funcionar, mostra o placeholder
             profileImage.style.display = 'none';
             placeholder.style.display = 'flex';
         }
@@ -33,22 +31,34 @@ function tryImageFormats() {
     tryNextFormat();
 }
 
-// Tentar carregar a imagem quando a página carregar
 document.addEventListener('DOMContentLoaded', () => {
     const profileImage = document.getElementById('profileImage');
     if (profileImage) {
         profileImage.onerror = tryImageFormats;
-        // Tenta carregar a imagem
         tryImageFormats();
     }
     
-    // Carregar logos dos clientes imediatamente
     loadClientLogos();
+    
+    document.querySelectorAll('img[data-client]').forEach(img => {
+        img.addEventListener('load', () => {
+            img.style.display = 'block';
+            const parent = img.closest('.client-card');
+            if (parent) {
+                const fallback = parent.querySelector('.logo-fallback');
+                if (fallback) {
+                    fallback.style.display = 'none';
+                }
+            }
+        });
+        
+        img.addEventListener('error', () => {
+            handleLogoError(img);
+        });
+    });
 });
 
-// Função global para tratar erro de logo (chamada pelo onerror do HTML)
 window.handleLogoError = function(img) {
-    // Procura o fallback no elemento pai (div)
     const parent = img.closest('.client-card');
     if (parent) {
         const fallback = parent.querySelector('.logo-fallback');
@@ -59,7 +69,6 @@ window.handleLogoError = function(img) {
     }
 };
 
-// Função para carregar logos com múltiplas URLs de fallback
 function loadClientLogos() {
     const clientLogos = {
         'caixa': [
@@ -90,55 +99,53 @@ function loadClientLogos() {
         ]
     };
     
-    // Carregar cada logo tentando múltiplas URLs
     Object.keys(clientLogos).forEach(client => {
         const img = document.querySelector(`img[data-client="${client}"]`);
         if (!img) return;
         
-        const urls = clientLogos[client];
-        let currentUrlIndex = 0;
-        
-        function tryNextUrl() {
-            if (currentUrlIndex < urls.length) {
-                // Tenta carregar diretamente na imagem
-                img.onload = () => {
-                    img.style.display = 'block';
-                    img.style.opacity = '0.8';
-                    // Esconde o fallback quando a imagem carregar
-                    const parent = img.closest('.client-card');
-                    if (parent) {
-                        const fallback = parent.querySelector('.logo-fallback');
-                        if (fallback) {
-                            fallback.style.display = 'none';
-                        }
-                    }
-                };
-                img.onerror = () => {
-                    currentUrlIndex++;
+        setTimeout(() => {
+            if (img.naturalHeight === 0 || !img.complete) {
+                const urls = clientLogos[client];
+                let currentUrlIndex = 1;
+                
+                function tryNextUrl() {
                     if (currentUrlIndex < urls.length) {
-                        img.src = urls[currentUrlIndex];
-                    } else {
-                        // Se nenhuma URL funcionar, mantém o fallback de texto
-                        img.style.display = 'none';
-                        const parent = img.closest('.client-card');
-                        if (parent) {
-                            const fallback = parent.querySelector('.logo-fallback');
-                            if (fallback) {
-                                fallback.style.display = 'flex';
+                        const testImg = new Image();
+                        testImg.onload = () => {
+                            img.src = urls[currentUrlIndex];
+                            img.style.display = 'block';
+                            const parent = img.closest('.client-card');
+                            if (parent) {
+                                const fallback = parent.querySelector('.logo-fallback');
+                                if (fallback) {
+                                    fallback.style.display = 'none';
+                                }
                             }
-                        }
+                        };
+                        testImg.onerror = () => {
+                            currentUrlIndex++;
+                            tryNextUrl();
+                        };
+                        testImg.src = urls[currentUrlIndex];
+                    } else {
+                        handleLogoError(img);
                     }
-                };
-                img.src = urls[currentUrlIndex];
+                }
+                
+                tryNextUrl();
+            } else {
+                const parent = img.closest('.client-card');
+                if (parent) {
+                    const fallback = parent.querySelector('.logo-fallback');
+                    if (fallback) {
+                        fallback.style.display = 'none';
+                    }
+                }
             }
-        }
-        
-        // Inicia imediatamente
-        tryNextUrl();
+        }, 2000);
     });
 }
 
-// Menu Mobile
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 const navMenuMobile = document.getElementById('navMenuMobile');
@@ -150,7 +157,6 @@ if (hamburger && navMenuMobile) {
         hamburger.classList.toggle('active');
     });
 
-    // Fechar menu ao clicar em um link
     navMenuMobile.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navMenuMobile.classList.add('left-[-100%]');
@@ -160,7 +166,6 @@ if (hamburger && navMenuMobile) {
     });
 }
 
-// Scroll suave para seções
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -175,7 +180,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar com efeito de scroll
 let lastScroll = 0;
 const navbar = document.querySelector('.navbar');
 
@@ -191,7 +195,6 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Animação de entrada para elementos
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -206,7 +209,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observar elementos para animação
 document.addEventListener('DOMContentLoaded', () => {
     const animateElements = document.querySelectorAll('.skill-card, .project-card, .stat-item');
     
@@ -218,14 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Formulário de contato
 const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    // Aqui você pode adicionar a lógica para enviar o formulário
-    // Por exemplo, usando fetch para enviar para um servidor
     
     const formData = {
         name: document.getElementById('name').value,
@@ -234,19 +232,16 @@ contactForm.addEventListener('submit', (e) => {
         message: document.getElementById('message').value
     };
     
-    // Exemplo de feedback visual
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     
     submitButton.textContent = 'Enviando...';
     submitButton.disabled = true;
     
-    // Simular envio (substitua por sua lógica real)
     setTimeout(() => {
         submitButton.textContent = 'Mensagem Enviada!';
         submitButton.style.background = '#10b981';
         
-        // Resetar formulário
         contactForm.reset();
         
         setTimeout(() => {
@@ -259,7 +254,6 @@ contactForm.addEventListener('submit', (e) => {
     console.log('Dados do formulário:', formData);
 });
 
-// Adicionar efeito parallax suave no hero
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
@@ -268,7 +262,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Atualizar link ativo na navegação
 const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {

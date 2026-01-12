@@ -71,7 +71,6 @@
     </style>
 </head>
 <body class="bg-black text-white font-sans">
-    <!-- Navegação -->
     <nav class="fixed top-0 w-full bg-black/95 backdrop-blur-md shadow-red z-50 border-b border-dark-border">
         <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-primary">
@@ -91,7 +90,6 @@
                 <span class="w-6 h-0.5 bg-white transition-all"></span>
             </div>
         </div>
-        <!-- Menu Mobile -->
         <ul class="md:hidden fixed left-[-100%] top-[70px] flex-col bg-black w-full text-center transition-all shadow-red border-t border-dark-border py-8 list-none" id="navMenuMobile">
             <li class="py-4"><a href="#home" class="text-white hover:text-primary transition-colors">Início</a></li>
             <li class="py-4"><a href="#sobre" class="text-white hover:text-primary transition-colors">Sobre</a></li>
@@ -102,7 +100,6 @@
         </ul>
     </nav>
 
-    <!-- Seção Hero -->
     <section id="home" class="min-h-screen flex items-center pt-20 bg-gradient-red-black text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-red-radial"></div>
         <div class="max-w-7xl mx-auto px-5 relative z-10">
@@ -143,7 +140,6 @@
         </div>
     </section>
 
-    <!-- Seção Sobre -->
     <section id="sobre" class="py-20 bg-dark-secondary">
         <div class="max-w-4xl mx-auto px-5">
             <h2 class="text-4xl font-bold text-center mb-12 text-white relative after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-primary after:to-secondary after:rounded after:shadow-red-glow">
@@ -186,7 +182,6 @@
         </div>
     </section>
 
-    <!-- Seção Habilidades -->
     <section id="habilidades" class="py-20 bg-black">
         <div class="max-w-7xl mx-auto px-5">
             <h2 class="text-4xl font-bold text-center mb-12 text-white relative after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-primary after:to-secondary after:rounded after:shadow-red-glow">
@@ -267,7 +262,6 @@
         </div>
     </section>
 
-    <!-- Seção Clientes -->
     <section id="clientes" class="py-20 bg-black">
         <div class="max-w-7xl mx-auto px-5">
             <h2 class="text-4xl font-bold text-center mb-12 text-white relative after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-primary after:to-secondary after:rounded after:shadow-red-glow">
@@ -275,67 +269,63 @@
             </h2>
             <p class="text-center text-gray-400 mb-12 text-lg">Trabalho com grandes instituições financeiras e empresas líderes de mercado</p>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 items-center justify-items-center" id="clientLogosGrid">
-                <!-- Caixa Econômica Federal -->
-                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group">
+                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group relative overflow-hidden">
                     <a href="https://www.caixa.gov.br/Paginas/home-caixa.aspx" target="_blank" rel="noopener noreferrer" class="w-full h-full flex items-center justify-center">
-                        <img data-client="caixa" src="" alt="Caixa Econômica Federal" class="max-w-full max-h-20 object-contain opacity-80 group-hover:opacity-100 transition-opacity client-logo" onerror="handleLogoError(this);" style="filter: brightness(0) invert(1); display: none;">
+                        <img src="https://images.weserv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Caixa_Econ%C3%B4mica_Federal_logo.svg/512px-Caixa_Econ%C3%B4mica_Federal_logo.svg.png" alt="Caixa" class="max-w-full max-h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-primary font-bold text-xl text-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all text-glow-red hidden">CAIXA</div>
                     </a>
-                    <div class="logo-fallback flex items-center justify-center text-primary font-bold text-sm">CAIXA</div>
                 </div>
-                <!-- Bradesco -->
-                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group">
+                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group relative overflow-hidden">
                     <a href="https://banco.bradesco/html/classic/index.shtm" target="_blank" rel="noopener noreferrer" class="w-full h-full flex items-center justify-center">
-                        <img data-client="bradesco" src="" alt="Bradesco" class="max-w-full max-h-20 object-contain opacity-80 group-hover:opacity-100 transition-opacity client-logo" onerror="handleLogoError(this);" style="filter: brightness(0) invert(1); display: none;">
+                        <img src="https://images.weserv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Bradesco_logo.svg/512px-Bradesco_logo.svg.png" alt="Bradesco" class="max-w-full max-h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-primary font-bold text-lg text-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all text-glow-red hidden">BRADESCO</div>
                     </a>
-                    <div class="logo-fallback flex items-center justify-center text-primary font-bold text-sm">BRADESCO</div>
                 </div>
-                <!-- Santander -->
-                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group">
+                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group relative overflow-hidden">
                     <a href="https://www.santander.com.br/" target="_blank" rel="noopener noreferrer" class="w-full h-full flex items-center justify-center">
-                        <img data-client="santander" src="" alt="Santander" class="max-w-full max-h-20 object-contain opacity-80 group-hover:opacity-100 transition-opacity client-logo" onerror="handleLogoError(this);" style="filter: brightness(0) invert(1); display: none;">
+                        <img src="https://images.weserv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Santander_logo.svg/512px-Santander_logo.svg.png" alt="Santander" class="max-w-full max-h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="flex flex-col items-center gap-1 hidden">
+                            <svg class="w-10 h-10 text-primary opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                            </svg>
+                            <span class="text-primary font-bold text-sm opacity-80 group-hover:opacity-100 transition-opacity text-glow-red">SANTANDER</span>
+                        </div>
                     </a>
-                    <div class="logo-fallback flex items-center justify-center text-primary font-bold text-sm">SANTANDER</div>
                 </div>
-                <!-- Itaú -->
-                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group">
+                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group relative overflow-hidden">
                     <a href="https://www.itau.com.br/" target="_blank" rel="noopener noreferrer" class="w-full h-full flex items-center justify-center">
-                        <img data-client="itau" src="" alt="Itaú" class="max-w-full max-h-20 object-contain opacity-80 group-hover:opacity-100 transition-opacity client-logo" onerror="handleLogoError(this);" style="filter: brightness(0) invert(1); display: none;">
+                        <img src="https://images.weserv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ita%C3%BA_logo.svg/512px-Ita%C3%BA_logo.svg.png" alt="Itaú" class="max-w-full max-h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-primary font-bold text-xl text-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all text-glow-red hidden">ITAU</div>
                     </a>
-                    <div class="logo-fallback flex items-center justify-center text-primary font-bold text-sm">ITAU</div>
                 </div>
-                <!-- BRB -->
-                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group">
+                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group relative overflow-hidden">
                     <a href="https://novo.brb.com.br/" target="_blank" rel="noopener noreferrer" class="w-full h-full flex items-center justify-center">
-                        <img data-client="brb" src="" alt="BRB" class="max-w-full max-h-20 object-contain opacity-80 group-hover:opacity-100 transition-opacity client-logo" onerror="handleLogoError(this);" style="filter: brightness(0) invert(1); display: none;">
+                        <img src="https://images.weserv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/BRB_Banco_de_Brasilia_logo.svg/512px-BRB_Banco_de_Brasilia_logo.svg.png" alt="BRB" class="max-w-full max-h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-primary font-bold text-2xl text-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all text-glow-red hidden">BRB</div>
                     </a>
-                    <div class="logo-fallback flex items-center justify-center text-primary font-bold text-sm">BRB</div>
                 </div>
-                <!-- Correios -->
-                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group">
+                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group relative overflow-hidden">
                     <a href="https://www.correios.com.br/" target="_blank" rel="noopener noreferrer" class="w-full h-full flex items-center justify-center">
-                        <img data-client="correios" src="" alt="Correios" class="max-w-full max-h-20 object-contain opacity-80 group-hover:opacity-100 transition-opacity client-logo" onerror="handleLogoError(this);" style="filter: brightness(0) invert(1); display: none;">
+                        <img src="https://images.weserv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Correios_logo.svg/512px-Correios_logo.svg.png" alt="Correios" class="max-w-full max-h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-primary font-bold text-base text-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all text-glow-red hidden">CORREIOS</div>
                     </a>
-                    <div class="logo-fallback flex items-center justify-center text-primary font-bold text-sm">CORREIOS</div>
                 </div>
-                <!-- CNH -->
-                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group">
+                <div class="bg-dark-secondary p-6 rounded-xl border border-dark-border hover:border-primary hover:shadow-red-lg transition-all w-full h-32 flex items-center justify-center client-card group relative overflow-hidden">
                     <a href="https://www.cnh.com/" target="_blank" rel="noopener noreferrer" class="w-full h-full flex items-center justify-center">
-                        <img data-client="cnh" src="" alt="CNH" class="max-w-full max-h-20 object-contain opacity-80 group-hover:opacity-100 transition-opacity client-logo" onerror="handleLogoError(this);" style="filter: brightness(0) invert(1); display: none;">
+                        <img src="https://images.weserv.nl/?url=https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/CNH_Industrial_logo.svg/512px-CNH_Industrial_logo.svg.png" alt="CNH" class="max-w-full max-h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="text-primary font-bold text-2xl text-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all text-glow-red hidden">CNH</div>
                     </a>
-                    <div class="logo-fallback flex items-center justify-center text-primary font-bold text-sm">CNH</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Projetos -->
     <section id="projetos" class="py-20 bg-dark-secondary">
         <div class="max-w-7xl mx-auto px-5">
             <h2 class="text-4xl font-bold text-center mb-12 text-white relative after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-primary after:to-secondary after:rounded after:shadow-red-glow">
                 Projetos e Experiências
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Tardis Tecnologia -->
                 <div class="bg-black rounded-2xl overflow-hidden shadow-red border border-dark-border hover:-translate-y-1 hover:shadow-red-lg hover:border-primary transition-all">
                     <div class="h-56 bg-gradient-to-br from-black via-primary/20 to-black flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-red-radial"></div>
@@ -387,7 +377,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Shield Tecnologia -->
                 <div class="bg-black rounded-2xl overflow-hidden shadow-red border border-dark-border hover:-translate-y-1 hover:shadow-red-lg hover:border-primary transition-all">
                     <div class="h-56 bg-gradient-to-br from-black via-orange-600/20 to-black flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-r from-orange-600/10 to-transparent"></div>
@@ -438,7 +427,6 @@
         </div>
     </section>
 
-    <!-- Seção Contato -->
     <section id="contato" class="py-20 bg-black">
         <div class="max-w-5xl mx-auto px-5">
             <h2 class="text-4xl font-bold text-center mb-12 text-white relative after:absolute after:bottom-[-10px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-gradient-to-r after:from-primary after:to-secondary after:rounded after:shadow-red-glow">
@@ -496,7 +484,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-black text-white py-8 border-t border-dark-border">
         <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between items-center gap-4">
             <p>&copy; 2024 João Pedro Zimiani Ancioto. Todos os direitos reservados.</p>
