@@ -70,79 +70,17 @@ window.handleLogoError = function(img) {
 };
 
 function loadClientLogos() {
-    const clientLogos = {
-        'caixa': [
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Caixa_Econ%C3%B4mica_Federal_logo.svg/512px-Caixa_Econ%C3%B4mica_Federal_logo.svg.png',
-            'https://logos-world.net/wp-content/uploads/2021/02/Caixa-Economica-Federal-Logo.png'
-        ],
-        'bradesco': [
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Bradesco_logo.svg/512px-Bradesco_logo.svg.png',
-            'https://logos-world.net/wp-content/uploads/2020/11/Bradesco-Logo.png'
-        ],
-        'santander': [
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Santander_logo.svg/512px-Santander_logo.svg.png',
-            'https://logos-world.net/wp-content/uploads/2020/11/Santander-Logo.png'
-        ],
-        'itau': [
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ita%C3%BA_logo.svg/512px-Ita%C3%BA_logo.svg.png',
-            'https://logos-world.net/wp-content/uploads/2020/11/Itau-Logo.png'
-        ],
-        'brb': [
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/BRB_Banco_de_Brasilia_logo.svg/512px-BRB_Banco_de_Brasilia_logo.svg.png'
-        ],
-        'correios': [
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Correios_logo.svg/512px-Correios_logo.svg.png',
-            'https://logos-world.net/wp-content/uploads/2021/03/Correios-Logo.png'
-        ],
-        'cnh': [
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/CNH_Industrial_logo.svg/512px-CNH_Industrial_logo.svg.png'
-        ]
-    };
-    
-    Object.keys(clientLogos).forEach(client => {
-        const img = document.querySelector(`img[data-client="${client}"]`);
-        if (!img) return;
-        
-        setTimeout(() => {
-            if (img.naturalHeight === 0 || !img.complete) {
-                const urls = clientLogos[client];
-                let currentUrlIndex = 1;
-                
-                function tryNextUrl() {
-                    if (currentUrlIndex < urls.length) {
-                        const testImg = new Image();
-                        testImg.onload = () => {
-                            img.src = urls[currentUrlIndex];
-                            img.style.display = 'block';
-                            const parent = img.closest('.client-card');
-                            if (parent) {
-                                const fallback = parent.querySelector('.logo-fallback');
-                                if (fallback) {
-                                    fallback.style.display = 'none';
-                                }
-                            }
-                        };
-                        testImg.onerror = () => {
-                            currentUrlIndex++;
-                            tryNextUrl();
-                        };
-                        testImg.src = urls[currentUrlIndex];
-                    } else {
-                        handleLogoError(img);
-                    }
-                }
-                
-                tryNextUrl();
-            } else {
-                const parent = img.closest('.client-card');
-                if (parent) {
-                    const fallback = parent.querySelector('.logo-fallback');
-                    if (fallback) {
-                        fallback.style.display = 'none';
-                    }
+    document.querySelectorAll('img[data-client]').forEach(img => {
+        img.addEventListener('load', () => {
+            img.style.display = 'block';
+            const parent = img.closest('.client-card');
+            if (parent) {
+                const fallback = parent.querySelector('.logo-fallback');
+                if (fallback) {
+                    fallback.style.display = 'none';
                 }
             }
-        }, 2000);
+        });
     });
 }
 
@@ -212,7 +150,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.skill-card, .project-card, .stat-item');
+    const animateElements = document.querySelectorAll('.skill-card, .project-card, .stat-item, .education-card');
     
     animateElements.forEach(el => {
         el.style.opacity = '0';
