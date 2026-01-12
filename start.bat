@@ -10,3 +10,5 @@ if errorlevel 1 (
     echo Python nao encontrado. Tentando com Node.js...
     npx http-server -p 8000 -o
 )
+
+

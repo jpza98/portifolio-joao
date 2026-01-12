@@ -14,3 +14,5 @@ try {
     Write-Host "Python não encontrado. Tentando com Node.js..." -ForegroundColor Yellow
     npx http-server -p 8000 -o
 }
+
+

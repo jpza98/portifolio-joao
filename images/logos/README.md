@@ -4,6 +4,8 @@ Coloque aqui as imagens dos logos dos bancos e empresas.
 
 ## Arquivos necessários:
 
+
+
 - `caixa.png` - Logo da Caixa Econômica Federal
 - `bradesco.png` - Logo do Bradesco
 - `santander.png` - Logo do Santander

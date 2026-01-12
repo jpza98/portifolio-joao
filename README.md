@@ -107,3 +107,5 @@ Certifique-se de executar `npm run build` antes do deploy.
 ---
 
 **Desenvolvido com ❤️ usando Tailwind CSS e SCSS**
+
+
