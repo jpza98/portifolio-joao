@@ -220,17 +220,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const USE_EMAILJS = true;
+const USE_JAVA_BACKEND = false;
+
+const EMAILJS_CONFIG = {
+    PUBLIC_KEY: 'VnEI8IWmZZ3t3FLv_',
+    SERVICE_ID: 'service_igxz3xp',
+    TEMPLATE_ID: 'template_qrqinzh'
+};
+
+const JAVA_BACKEND_URL = 'https://seu-backend.railway.app/api/contact';
+
+if (USE_EMAILJS && typeof emailjs !== 'undefined') {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+}
+
 const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-    };
     
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
@@ -238,21 +246,73 @@ contactForm.addEventListener('submit', (e) => {
     submitButton.textContent = 'Enviando...';
     submitButton.disabled = true;
     
-    setTimeout(() => {
-        submitButton.textContent = 'Mensagem Enviada!';
-        submitButton.style.background = '#10b981';
-        
-        contactForm.reset();
-        
-        setTimeout(() => {
-            submitButton.textContent = originalText;
-            submitButton.style.background = '';
-            submitButton.disabled = false;
-        }, 3000);
-    }, 1500);
+    const formData = {
+        fromName: document.getElementById('name').value,
+        fromEmail: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+    };
     
-    console.log('Dados do formulário:', formData);
+    if (USE_EMAILJS && typeof emailjs !== 'undefined') {
+        const templateParams = {
+            title: formData.subject,
+            name: formData.fromName,
+            email: formData.fromEmail,
+            message: formData.message,
+            time: new Date().toLocaleString('pt-BR')
+        };
+        
+        emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+            .then(() => {
+                showSuccess(submitButton, originalText, contactForm);
+            })
+            .catch((error) => {
+                console.error('Erro ao enviar email:', error);
+                showError(submitButton, originalText);
+            });
+    } else if (USE_JAVA_BACKEND) {
+        fetch(JAVA_BACKEND_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            showSuccess(submitButton, originalText, contactForm);
+        })
+        .catch((error) => {
+            console.error('Erro ao enviar email:', error);
+            showError(submitButton, originalText);
+        });
+    } else {
+        showError(submitButton, originalText);
+    }
 });
+
+function showSuccess(button, originalText, form) {
+    button.textContent = 'Mensagem Enviada!';
+    button.style.background = '#10b981';
+    form.reset();
+    
+    setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = '';
+        button.disabled = false;
+    }, 3000);
+}
+
+function showError(button, originalText) {
+    button.textContent = 'Erro ao enviar. Tente novamente.';
+    button.style.background = '#ef4444';
+    
+    setTimeout(() => {
+        button.textContent = originalText;
+        button.style.background = '';
+        button.disabled = false;
+    }, 3000);
+}
 
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
