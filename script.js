@@ -227,7 +227,7 @@ const USE_JAVA_BACKEND = false;
 
 const EMAILJS_CONFIG = {
     PUBLIC_KEY: 'pjXUGVHu9yKxCO5z2',
-    SERVICE_ID: 'service_igxz3xp',
+    SERVICE_ID: 'service_4glv9y4',
     TEMPLATE_ID: 'template_qrqinzh'
 };
 
