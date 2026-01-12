@@ -181,9 +181,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 let lastScroll = 0;
-const navbar = document.querySelector('.navbar');
+const navbar = document.querySelector('nav');
 
 window.addEventListener('scroll', () => {
+    if (!navbar) return;
+    
     const currentScroll = window.pageYOffset;
     
     if (currentScroll > 100) {
@@ -267,9 +269,10 @@ contactForm.addEventListener('submit', (e) => {
                 showSuccess(submitButton, originalText, contactForm);
             })
             .catch((error) => {
-                console.error('Erro ao enviar email:', error);
-                console.error('Verifique se a Public Key, Service ID e Template ID estão corretos no EmailJS');
-                showError(submitButton, originalText);
+                if (error.status !== 200) {
+                    console.error('Erro ao enviar email:', error);
+                    showError(submitButton, originalText);
+                }
             });
     } else if (USE_JAVA_BACKEND) {
         fetch(JAVA_BACKEND_URL, {
