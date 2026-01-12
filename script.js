@@ -224,14 +224,14 @@ const USE_EMAILJS = true;
 const USE_JAVA_BACKEND = false;
 
 const EMAILJS_CONFIG = {
-    PUBLIC_KEY: 'VnEI8IWmZZ3t3FLv_',
+    PUBLIC_KEY: 'pjXUGVHu9yKxCO5z2',
     SERVICE_ID: 'service_igxz3xp',
     TEMPLATE_ID: 'template_qrqinzh'
 };
 
 const JAVA_BACKEND_URL = 'https://seu-backend.railway.app/api/contact';
 
-if (USE_EMAILJS && typeof emailjs !== 'undefined') {
+if (typeof emailjs !== 'undefined') {
     emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 }
 
@@ -262,12 +262,13 @@ contactForm.addEventListener('submit', (e) => {
             time: new Date().toLocaleString('pt-BR')
         };
         
-        emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+        emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams, EMAILJS_CONFIG.PUBLIC_KEY)
             .then(() => {
                 showSuccess(submitButton, originalText, contactForm);
             })
             .catch((error) => {
                 console.error('Erro ao enviar email:', error);
+                console.error('Verifique se a Public Key, Service ID e Template ID estão corretos no EmailJS');
                 showError(submitButton, originalText);
             });
     } else if (USE_JAVA_BACKEND) {
