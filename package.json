@@ -7,7 +7,7 @@
     "build": "sass src/styles/main.scss styles.css && tailwindcss -i ./styles.css -o ./styles.css --minify",
     "dev": "sass --watch src/styles/main.scss:styles.css & tailwindcss -i ./styles.css -o ./styles.css --watch",
     "build-css": "npm run build",
-    "start": "npx http-server -p 8000 -o",
+    "start": "npx --yes http-server -p 8000 -c-1 -o",
     "serve": "python -m http.server 8000"
   },
   "keywords": [],

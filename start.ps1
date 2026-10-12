@@ -5,11 +5,4 @@ Write-Host ""
 Write-Host "Pressione Ctrl+C para parar o servidor" -ForegroundColor Yellow
 Write-Host ""
 
-try {
-    python -m http.server 8000
-} catch {
-    Write-Host "Python não encontrado. Tentando com Node.js..." -ForegroundColor Yellow
-    npx http-server -p 8000 -o
-}
-
-
+npx --yes http-server -p 8000 -c-1 -o
